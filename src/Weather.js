@@ -63,7 +63,7 @@ export default function Weather() {
         </div>
       </div>
       <small>
-        <a href="https://github.com/wecodeschool/react-weather">
+        <a href="https://github.com/jackymadenfrost/weather-react">
           Open-source code
         </a>
         , by <a href="https://www.matdelac.io">Jacky Madenfrost</a>
