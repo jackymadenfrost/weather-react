@@ -1,23 +1,73 @@
 import React from "react";
-import axios from "axios";
-import Loader from "react-loader-spinner";
+import "./Weather.css";
 
-export default function Weather(props) {
-  function handleResponse(response) {
-    alert(
-      `The weather in ${response.data.name} is ${response.data.main.temp} °C`
-    );
-  }
-  let apiKey = "d269e6083d3ccf70ce844f3cbe265377";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(handleResponse);
+export default function Weather() {
+  let weatherData = {
+    city: "Gold Coast",
+    temperature: "17",
+    date: "Wednesday 17:38",
+    description: "Partly cloudy",
+    imgUrl: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+    humidity: "87%",
+    wind: "11 km/h",
+  };
   return (
-    <Loader
-      type="Puff"
-      color="#00BFFF"
-      height={100}
-      width={100}
-      timeout={3000}
-    />
+    <div className="Weather">
+      <form class="mb-3">
+        <div className="row">
+          <div className="col-9">
+            <input
+              type="search"
+              placeholder="Type a city.."
+              className="form-control"
+              autoComplete="off"
+            />
+          </div>
+          <div className="col-3">
+            <input
+              type="submit"
+              value="Search"
+              className="btn btn–primary w-100"
+            />
+          </div>
+        </div>
+      </form>
+      <div className="overview">
+        <h1>{weatherData.city}</h1>
+        <ul>
+          <li>Last updated: {weatherData.date}</li>
+          <li>{weatherData.description}</li>
+        </ul>
+      </div>
+      <div className="row">
+        <div className="col-6">
+          <div className="clearfix weather-temperature">
+            <img
+              src={weatherData.imgUrl}
+              alt={weatherData.description}
+              className="float-start"
+            />
+            <div className="float-start">
+              <strong>{weatherData.temperature}</strong>
+              <span className="units">
+                <a href="/">°C</a> | <a href="/">°F</a>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="col-6">
+          <ul>
+            <li>Humidity: {weatherData.humidity}</li>
+            <li>Wind: {weatherData.wind}</li>
+          </ul>
+        </div>
+      </div>
+      <small>
+        <a href="https://github.com/wecodeschool/react-weather">
+          Open-source code
+        </a>
+        , by <a href="https://www.matdelac.io">Jacky Madenfrost</a>
+      </small>
+    </div>
   );
 }
